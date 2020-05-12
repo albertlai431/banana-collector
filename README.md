@@ -5,7 +5,11 @@ Languages: Python 3.6 and Pytorch\
 Environment: [Unity ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents)
 
 ## The Environment
-![Unity Environment](/assets/environment.gif "Unity Environment")
+**Before Training:** *Reward: -1.0*
+![Before Training ](/assets/before-training.gif "Before-training")
+
+**After Training:** *Reward: +17.0*
+![After Training ](/assets/after-training.gif "After-training")
 
 ### Actions
 - **0** - move forward
