@@ -19,8 +19,19 @@ The state of the environment has 37 dimensions, including velocity and perceptio
 ### Rewards
 The agent is given a reward of **+1** if it collects a yellow banana, and a reward of **-1** if it collects a blue banana. The environment is _solved_ when the agent accumulates an reward of **+13** over 100 episodes.
 
+## Installation (Windows 10 64-bit)
+1. Install [Anaconda](https://docs.anaconda.com/anaconda/install/) if you don't have it already.
+2. Open Anaconda Prompt/command line 
+3. Create a new environment (named banana-env): `conda create --name banana-env python=3.6` 
+4. Activate environment: `activate banana-env`
+5. Navigate to desired directory to download project file
+6. Clone the repository: `git clone https://github.com/albertlai431/banana-collector` 
+7. Go to dependencies directory `cd python`
+8. Install dependencies `pip install .`
+9. Install pytorch 0.4.0 with conda `conda install pytorch=0.4.0 -c pytorch`
+10. Create kernel with environment: `python -m ipykernel install --user --name banana-env --display-name "banana-env"`
+
 ## How to Use
-1. `git clone https://github.com/albertlai431/banana-collector`
-2. Open `Navigation.ipynb` and excecute the first block of code to install all the depencies
-3. Run the rest of the code to train the model! 😃 (a fully trained model is saved as `checkpoint.pth`)
+1. Open `train.ipynb` and run the code if you would like to train the agent 💪
+2. Open `test.ipynb` and run the code if you would like to observe a fully trained agent! 😃
 
