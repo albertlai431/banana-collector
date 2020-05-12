@@ -2,19 +2,19 @@
 
 ### DQN Algorithm
 
-The **DQN (Deep Q-learning)** algorithm is based off of **TD Control**, more specifically the **Sarsamax** algorithm. TD Control allows for continuous and quicker learning than Monte Carlo methods, through updating the estimate q* after every time step. Sarsamax in particular, uses the greedy next action value to update the Q-table.
+The **DQN (Deep Q-learning)** algorithm is based on **TD Control**, more specifically the **Sarsamax** algorithm. TD Control allows for continuous and quicker learning than Monte Carlo methods, through updating the estimate q* after every time step. Sarsamax, in particular, uses the greedy next action value to update the Q-table.
 
-The DQN algorithm incorportates a **neural network** (denoted Q) to represent a continuous state space, such as the one used in this environment. It takes a vectorized state as input and outputs predicted reward values for each corresponding action, playing a similar role to a regular lookup table. It uses gradient descent after every time step to find the optimal parameters to better model the environment, and optimize the agent's actions. In particular, it determines the gradient from taking the loss `optimal_value_for_state_action_pair - esimtaed_Q_value_for_state_action_pair`. 
+The DQN algorithm incorporates a **neural network** (denoted Q) to represent a continuous state space, such as the one used in this environment. It takes a vectorized state as input and outputs predicted reward values for each corresponding action, playing a similar role to a regular lookup table. It uses gradient descent after every time step to find the optimal parameters to better model the environment, and optimize the agent's actions. In particular, it determines the gradient from taking the loss `optimal_value_for_state_action_pair - estimated_Q_value_for_state_action_pair`. 
 
-However, simply replacing the Q-table with a neural network often leads to oscillations and divergences due to the unstable parameters, leading to a failure to convergence. DQN addresses these stabilities with a **replay pool** and **fixed Q-targets**. The replay pool removes correlation between consecutive sequences of experience tuples through creating a replay buffer which stores experience tuples collected by the agent. Rather than learning after each experience, it stores them in the replay buffer and samples small bathces of them randomly from time to time. This technique also allows the network for learn from individual experiences over and over again rather than discarding them after just learning once. Fixed Q-targets, on the other hand, fixes the instability involved with modifying the weights for both the optimal and estimated values during the update step, which can be analogized as a dog chasing its own tail. To address the issue, the DQN algorithm uses two networks, one to represent the estimated Q network and the other as a fixed target network to compute the loss. The target network is continually updated after a certain number of learning iterations.  
+However, simply replacing the Q-table with a neural network often leads to oscillations and divergences due to the unstable parameters, leading to a failure to convergence. DQN addresses these stabilities with a **replay pool** and **fixed Q-targets**. The replay pool removes the correlation between consecutive sequences of experience tuples through creating a replay buffer which stores experience tuples collected by the agent. Rather than learning after each experience, it stores them in the replay buffer and samples small batches of them randomly from time to time. This technique also allows the network to learn from individual experiences over and over again rather than discarding them after just learning once. Fixed Q-targets, on the other hand, fixes the instability involved with modifying the weights for both the optimal and estimated values during the update step, which can be analogized as a dog chasing its own tail. To address the issue, the DQN algorithm uses two networks, one to represent the estimated Q network and the other as a fixed target network to compute the loss. The target network is continually updated after a certain number of learning iterations.  
 
 ### Implementation
 
 **Agent**
 - 2 Q-networks and one replay buffer
-- Act method: uses local network along with epsilon-greedy policy to output next action
+- Act method: uses the local network along with the epsilon-greedy policy to output the next action
 - Step method: store experience tuple in replay buffer, and learns UPDATE_EVERY
-- Learn method: updates local network with gradient descent through loss.backward and optimizer.step, soft updates target network
+- Learn method: updates local network with gradient descent through loss.backward and optimizer.step, and soft updates target network
 
 **Training:**
 - Loop over episodes:
